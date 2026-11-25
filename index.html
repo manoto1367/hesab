@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f8b7d">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="حساب">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>حساب</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -98,7 +106,8 @@ header{position:relative}
 <div class="row"><button class="btn" id="li">ورود</button><button class="btn g" id="su">ثبت‌نام</button></div></div>
 <div id="ln" style="display:none;flex-direction:column;gap:12px"><span id="lu"></span><button class="btn g" id="lx">خروج</button></div>
 <div id="lm" class="wd"></div></div>
-</aside>
+<button class="btn" id="inst" style="display:none;margin-top:14px;width:100%">📲 نصب برنامه روی گوشی</button>
+<p class="wd" style="color:var(--mut);font-weight:400;margin-top:10px">روی iPhone: دکمهٔ Share مرورگر Safari ← Add to Home Screen</p></aside>
 <nav id="nav">
 <button class="on" data-t="tw">⏳ لیست انتظار</button>
 <button data-t="tq">📅 لیست نوبت</button>
@@ -148,6 +157,9 @@ header{position:relative}
 <div class="grid"><div><label>هزینه متراژ نهایی (تومان)</label><input id="fo" type="number" min="0" inputmode="numeric"><div class="wd" id="w_fo"></div><div class="wd" id="fm" style="color:var(--mut)"></div></div>
 <div><label>مجموع خودکار از تب ثبت اطلاعات</label><input id="fa" readonly></div></div>
 <div class="row"><button class="btn" id="fs">✅ ثبت هزینه متراژ نهایی</button><button class="btn g" id="fr">بازگشت به مجموع خودکار</button></div></div>
+<div class="card"><h3>➗ سهم واریزی از هزینه نهایی</h3>
+<div class="grid"><div><label>عدد تقسیم (هر عددی، مثلاً تعداد نفرات)</label><input id="dvn" type="number" min="0" step="any" inputmode="decimal"></div>
+<div><label>سهم واریزی (هزینه نهایی ÷ عدد)</label><input id="shr" readonly><div class="wd" id="w_shr"></div></div></div></div>
 </section>
 <section id="tp">
 <div class="card"><h3>💸 ثبت واریز</h3><div class="seg" id="ptp"><button class="on" data-k="c">👥 به همکار</button><button data-k="d">🧴 حساب مواد شوینده</button></div>
@@ -281,7 +293,7 @@ function toW(x){return{name:x.n,village:x.v,phone:x.p}}
 function toT(x){return{name:x.n,village:x.v,phone:x.p,y:x.y,m:x.m,d:x.d}}
 function syncL(){if(!rem())return Promise.resolve();return Promise.all([['hesab_waiting',wl,toW],['hesab_turns',tl,toT],['hesab_payouts',pl,toP],['hesab_equip',eq,function(x){return{note:x.t,amount:x.a}}]].map(function(c){var p=c[1].filter(function(x){return!x.id});if(!p.length)return Promise.resolve();return window.SB.from(c[0]).insert(p.map(c[2])).select().then(function(res){if(!res.error)res.data.forEach(function(r,i){p[i].id=r.id})})}))}
 function saveL(){try{localStorage.setItem('hesab_w',JSON.stringify(wl));localStorage.setItem('hesab_t',JSON.stringify(tl));localStorage.setItem('hesab_p',JSON.stringify(pl));localStorage.setItem('hesab_e',JSON.stringify(eq))}catch(e){}syncL()}
-function loadLists(){if(!rem())return;syncL().then(function(){return Promise.all([window.SB.from('hesab_waiting').select('*').order('created_at'),window.SB.from('hesab_turns').select('*').order('created_at'),window.SB.from('hesab_payouts').select('*').order('created_at'),window.SB.from('hesab_equip').select('*').order('created_at'),window.SB.from('hesab_kv').select('*').eq('key','fo')])}).then(function(r){if(!r[0].error)wl=r[0].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone}});if(!r[1].error)tl=r[1].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone,y:x.y,m:x.m,d:x.d}});if(!r[2].error)pl=r[2].data.map(function(x){return{id:x.id,n:x.name,c:x.card,a:+x.amount,y:x.y,m:x.m,d:x.d,r:x.receipt,k:x.kind||'c'}});if(!r[3].error)eq=r[3].data.map(function(x){return{id:x.id,t:x.note,a:+x.amount}});if(!r[4].error)fo=r[4].data.length?+r[4].data[0].value:null;saveFo(true);saveL();renderL()})}
+function loadLists(){if(!rem())return;syncL().then(function(){return Promise.all([window.SB.from('hesab_waiting').select('*').order('created_at'),window.SB.from('hesab_turns').select('*').order('created_at'),window.SB.from('hesab_payouts').select('*').order('created_at'),window.SB.from('hesab_equip').select('*').order('created_at'),window.SB.from('hesab_kv').select('*')])}).then(function(r){if(!r[0].error)wl=r[0].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone}});if(!r[1].error)tl=r[1].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone,y:x.y,m:x.m,d:x.d}});if(!r[2].error)pl=r[2].data.map(function(x){return{id:x.id,n:x.name,c:x.card,a:+x.amount,y:x.y,m:x.m,d:x.d,r:x.receipt,k:x.kind||'c'}});if(!r[3].error)eq=r[3].data.map(function(x){return{id:x.id,t:x.note,a:+x.amount}});if(!r[4].error){var kf=r[4].data.filter(function(x){return x.key=='fo'})[0],kd=r[4].data.filter(function(x){return x.key=='dv'})[0];fo=kf?+kf.value:null;dn=kd?+kd.value:0}saveFo(true);saveDn(true);saveL();renderL()})}
 function delRow(t,x){if(rem()&&x.id)window.SB.from(t).delete().eq('id',x.id).then(function(){})}
 function uniq(a){return a.filter(function(v,i){return v&&a.indexOf(v)==i})}
 function renderL(){
@@ -330,11 +342,14 @@ function cards(a){return a.map(function(i){return'<div class="k"><small>'+i[0]+'
 function renderE(){var f=fcost(),auto=0;data.forEach(function(r){auto+=r.ac});
 if(document.activeElement!==$('fo'))$('fo').value=Math.round(f);
 $('w_fo').textContent=words(f);$('fa').value=fa.format(Math.round(auto))+' تومان';
-$('fm').textContent=fo!==null?'مقدار دستی ثبت‌شده است':'به‌صورت خودکار از رکوردها محاسبه شده است'}
+$('fm').textContent=fo!==null?'مقدار دستی ثبت‌شده است':'به‌صورت خودکار از رکوردها محاسبه شده است';var n=dn>0?dn:0;$('shr').value=n?fa.format(Math.round(f/n))+' تومان':'';$('w_shr').textContent=n?words(f/n):'';if(document.activeElement!==$('dvn'))$('dvn').value=dn||''}
 window.dE=function(i){};
 $('fo').oninput=function(){$('w_fo').textContent=words(+this.value||0)};
 $('fs').onclick=function(){var v=+$('fo').value;if(!(v>=0))return;fo=v;saveFo();renderE();renderP()};
 $('fr').onclick=function(){fo=null;saveFo();renderE();renderP()};
+var dn=0;try{dn=+(localStorage.getItem('hesab_dn')||0)}catch(e){}
+function saveDn(lo){try{localStorage.setItem('hesab_dn',String(dn))}catch(e){}if(lo||!rem())return;window.SB.from('hesab_kv').upsert({key:'dv',value:String(dn)},{onConflict:'user_id,key'}).then(function(){})}
+$('dvn').oninput=function(){dn=+this.value||0;saveDn();renderE()};
 function renderP(){var by={c:0,e:0,d:0},t=0;pl.forEach(function(x){var k=x.k||'c';by[k]=(by[k]||0)+x.a;t+=x.a});
 var f=fcost();
 $('pe').style.display=pl.length?'none':'block';
@@ -367,7 +382,10 @@ $('lx').onclick=function(){SB.auth.signOut()};
 function dr(o){$('dr').classList.toggle('open',!!o);$('ov').style.display=o?'block':'none'}
 $('hb').onclick=function(){dr(1)};$('xc').onclick=function(){dr(0)};$('ov').onclick=function(){dr(0)};
 function ui(){if(user)dr(0);$('hb').classList.toggle('in',!!user);$('lo').style.display=(user||!SB)?'none':'block';$('ln').style.display=user?'flex':'none';if(user)$('lu').textContent='وارد شده: '+user.email}
-if(SB){SB.auth.onAuthStateChange(function(ev,s){var was=user;user=s?s.user:null;ui();if(user&&!was){setTimeout(function(){syncNew().then(loadRemote)},0)}if(!user&&was){data=[];wl=[];tl=[];pl=[];eq=[];fo=null;try{localStorage.removeItem('hesab_e');localStorage.removeItem('hesab_fo');localStorage.removeItem('hesab');localStorage.removeItem('hesab_w');localStorage.removeItem('hesab_t');localStorage.removeItem('hesab_p')}catch(e){}render();renderL()}})}else{ui()}
+if(SB){SB.auth.onAuthStateChange(function(ev,s){var was=user;user=s?s.user:null;ui();if(user&&!was){setTimeout(function(){syncNew().then(loadRemote)},0)}if(!user&&was){data=[];wl=[];tl=[];pl=[];eq=[];fo=null;dn=0;try{localStorage.removeItem('hesab_dn');localStorage.removeItem('hesab_e');localStorage.removeItem('hesab_fo');localStorage.removeItem('hesab');localStorage.removeItem('hesab_w');localStorage.removeItem('hesab_t');localStorage.removeItem('hesab_p')}catch(e){}render();renderL()}})}else{ui()}
+var dpr=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dpr=e;$('inst').style.display='block'});
+$('inst').onclick=function(){if(dpr){dpr.prompt();dpr=null;$('inst').style.display='none'}};
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
 render();
 </script>
 </body>

@@ -17,3 +17,9 @@
 2. در Settings ← Pages شاخهٔ `main` و پوشهٔ root را انتخاب کنید.
 3. آدرس سایت پس از چند دقیقه فعال می‌شود.
 4. در Supabase ← Authentication ← URL Configuration آدرس سایت خود را به Site URL اضافه کنید.
+
+## نصب به‌صورت اپ (PWA)
+- فایل‌های `manifest.webmanifest`، `sw.js` و آیکون‌ها (`icon-192.png`، `icon-512.png`، `apple-touch-icon.png`، `icon.svg`) را کنار `index.html` در مخزن بگذارید.
+- بعد از انتشار روی GitHub Pages (آدرس HTTPS)، در Chrome اندروید از منوی ☰ برنامه دکمهٔ «📲 نصب برنامه روی گوشی» یا از منوی مرورگر «Install app / Add to Home screen» را بزنید.
+- در iPhone: Safari ← دکمهٔ Share ← Add to Home Screen.
+- برنامه بعد از نصب بدون نوار مرورگر اجرا می‌شود و ظاهرش (صفحه‌ها و کتابخانه‌ها) برای بار بعد ذخیره می‌شود. ذخیره و بارگذاری داده‌ها در Supabase نیاز به اینترنت دارد.
