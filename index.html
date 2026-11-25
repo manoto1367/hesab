@@ -69,7 +69,7 @@ nav button{min-width:78px;white-space:nowrap;font-size:12.5px;padding:12px 4px}
 .mv{border:0;border-radius:16px;padding:5px 10px;font:700 12px Vazirmatn,Tahoma;background:var(--pri);color:#fff;cursor:pointer;white-space:nowrap;margin-left:4px}
 header{position:relative;overflow:hidden}
 header::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,#ffffff33,transparent 40%),radial-gradient(circle at 85% 85%,#e9a23b77,transparent 45%);pointer-events:none}
-header>h1,header>p{position:relative}
+header>h1,header>p{position:relative;z-index:1;pointer-events:none}
 header h1{text-shadow:0 3px 14px #0004}
 nav button.on{background:linear-gradient(135deg,var(--pri),var(--pri2))}
 .card{transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-2px);box-shadow:0 12px 26px #0002}
@@ -85,7 +85,7 @@ nav button.on{background:linear-gradient(135deg,var(--pri),var(--pri2))}
 .wide{grid-column:1/-1}
 .k:nth-child(n+7){background:linear-gradient(135deg,#0f766e,#2dd4bf)}
 header{position:relative}
-.hb{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:44px;height:44px;border:0;border-radius:12px;background:#ffffff30;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.hb{z-index:5;position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:44px;height:44px;border:0;border-radius:12px;background:#ffffff30;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}
 .hb i{display:block;width:22px;height:3px;border-radius:3px;background:#fff}
 .hb.in::after{content:"";position:absolute;top:6px;left:6px;width:10px;height:10px;border-radius:50%;background:#4ade80;border:2px solid #0b6e63}
 #ov{display:none;position:fixed;inset:0;background:#0007;z-index:40}
@@ -155,7 +155,7 @@ header{position:relative}
 <section id="te">
 <div class="card"><h3>🧮 هزینه متراژ نهایی</h3>
 <div class="grid"><div><label>هزینه متراژ نهایی (تومان)</label><input id="fo" type="number" min="0" inputmode="numeric"><div class="wd" id="w_fo"></div><div class="wd" id="fm" style="color:var(--mut)"></div></div>
-<div><label>مجموع خودکار از تب ثبت اطلاعات</label><input id="fa" readonly></div></div>
+<div><label>مجموع خودکار رکوردهای واریزشده (سبز)</label><input id="fa" readonly></div></div>
 <div class="row"><button class="btn" id="fs">✅ ثبت هزینه متراژ نهایی</button><button class="btn g" id="fr">بازگشت به مجموع خودکار</button></div></div>
 <div class="card"><h3>➗ سهم واریزی از هزینه نهایی</h3>
 <div class="grid"><div><label>عدد تقسیم (هر عددی، مثلاً تعداد نفرات)</label><input id="dvn" type="number" min="0" step="any" inputmode="decimal"></div>
@@ -334,15 +334,15 @@ if(!n){m.textContent='نام و نام خانوادگی را وارد کنید.'
 m.textContent='';pl.push({k:pkind,n:n,c:c,a:a,y:+$('pd_y').value,m:+$('pd_m').value,d:+$('pd_d').value,r:dig($('pr').value.trim())});
 ['pn','pc','pa','pr'].forEach(function(i){$(i).value=''});$('w_pa').textContent='';saveL();renderL()};
 var PK={c:'👥 به همکار',e:'🛠 حساب هزینه وسایل',d:'🧴 حساب مواد شوینده'},pkind='c';
-function fcost(){if(fo!==null)return fo;var t=0;data.forEach(function(r){t+=r.ac});return t}
+function fcost(){if(fo!==null)return fo;var t=0;data.forEach(function(r){if(r.pay)t+=r.ac});return t}
 function esum(){var t=0;eq.forEach(function(x){t+=x.a});return t}
 function saveFo(lo){try{if(fo===null)localStorage.removeItem('hesab_fo');else localStorage.setItem('hesab_fo',String(fo))}catch(e){}
 if(lo||!rem())return;if(fo===null)window.SB.from('hesab_kv').delete().eq('key','fo').then(function(){});else window.SB.from('hesab_kv').upsert({key:'fo',value:String(fo)},{onConflict:'user_id,key'}).then(function(){})}
 function cards(a){return a.map(function(i){return'<div class="k"><small>'+i[0]+'</small><div>'+T(i[1])+'</div></div>'}).join('')}
-function renderE(){var f=fcost(),auto=0;data.forEach(function(r){auto+=r.ac});
+function renderE(){var f=fcost(),auto=0,np=0;data.forEach(function(r){if(r.pay){auto+=r.ac;np++}});
 if(document.activeElement!==$('fo'))$('fo').value=Math.round(f);
 $('w_fo').textContent=words(f);$('fa').value=fa.format(Math.round(auto))+' تومان';
-$('fm').textContent=fo!==null?'مقدار دستی ثبت‌شده است':'به‌صورت خودکار از رکوردها محاسبه شده است';var n=dn>0?dn:0;$('shr').value=n?fa.format(Math.round(f/n))+' تومان':'';$('w_shr').textContent=n?words(f/n):'';if(document.activeElement!==$('dvn'))$('dvn').value=dn||''}
+$('fm').textContent=(fo!==null?'مقدار دستی ثبت‌شده است':'خودکار از رکوردهای واریزشده')+' — '+fa.format(np)+' رکورد واریزشده از '+fa.format(data.length);var n=dn>0?dn:0;$('shr').value=n?fa.format(Math.round(f/n))+' تومان':'';$('w_shr').textContent=n?words(f/n):'';if(document.activeElement!==$('dvn'))$('dvn').value=dn||''}
 window.dE=function(i){};
 $('fo').oninput=function(){$('w_fo').textContent=words(+this.value||0)};
 $('fs').onclick=function(){var v=+$('fo').value;if(!(v>=0))return;fo=v;saveFo();renderE();renderP()};
