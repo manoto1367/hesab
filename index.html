@@ -95,17 +95,27 @@ header{position:relative}
 .dr .x2{float:left;border:0;background:none;color:var(--mut);font-size:22px;cursor:pointer}
 .dr input{margin-bottom:10px}
 .cal{background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:10px;max-width:420px}.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.ch .btn{padding:6px 10px;font-size:12px}.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.cg .w{font-style:normal;font-size:12px;color:var(--mut);padding:4px 0}.dy{border:0;border-radius:10px;padding:9px 0;background:var(--card);color:var(--tx);font:600 13px Vazirmatn,Tahoma;cursor:pointer}.dy.td{outline:2px solid var(--acc)}.dy.on{background:var(--pri);color:#fff}.cs{margin-top:8px;font-size:12px;color:var(--mut);text-align:center}input[readonly]{opacity:.9;font-weight:700;color:var(--pri)}.wd{font-size:12px;color:var(--acc);min-height:16px;margin-top:4px;font-weight:600}
-#invov{display:none;position:fixed;inset:0;z-index:9999;background:#fff;color:#111;overflow:auto;padding:16px;direction:rtl;font-family:Tahoma,Vazirmatn,Arial,sans-serif;font-size:14px;-webkit-overflow-scrolling:touch}
+#invov{display:none;position:fixed;inset:0;z-index:9999;background:#fff;color:#000;overflow:auto;padding:14px;direction:rtl;font-family:Tahoma,Vazirmatn,Arial,sans-serif;font-size:13px;-webkit-overflow-scrolling:touch;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #invov.on{display:block}#invov *{box-sizing:border-box}
-#invov .in{max-width:760px;margin:0 auto;border:2px solid #0f8b7d;border-radius:12px;padding:20px}
-#invov h1{margin:0;color:#0f8b7d;font-size:24px}
-#invov .hd{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0f8b7d;padding-bottom:12px;margin-bottom:14px}
-#invov .m{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-bottom:14px}#invov .m div{padding:6px 0;border-bottom:1px dashed #bbb}#invov .m b{color:#555;font-weight:600}
-#invov .tw2{overflow-x:auto}#invov table{width:100%;border-collapse:collapse;margin-bottom:14px}#invov th,#invov td{border:1px solid #999;padding:7px 6px;text-align:center;color:#111;background:none}#invov th{background:#e6f4f1}#invov td.l{text-align:right}
-#invov .s{margin-right:auto;width:300px;max-width:100%}#invov .s div{display:flex;justify-content:space-between;padding:6px 8px;border-bottom:1px solid #ddd}#invov .s .t{background:#0f8b7d;color:#fff;font-weight:700;font-size:16px;border:0;border-radius:6px;margin-top:6px}
-#invov .w{margin:10px 0 0;color:#444}#invov .sg{display:flex;justify-content:space-around;margin-top:46px;color:#555}#invov .sg span{border-top:1px solid #777;padding-top:6px;min-width:120px;text-align:center}
-#invov .np{text-align:center;margin-bottom:14px;display:flex;gap:10px;justify-content:center}#invov .np button{font:inherit;padding:8px 22px;border:0;border-radius:8px;background:#0f8b7d;color:#fff;cursor:pointer}#invov .np button.g{background:#e5e7eb;color:#111}
-@media print{body>*:not(#invov){display:none!important}#invov{position:static;overflow:visible;padding:0;display:block}#invov .np{display:none}#invov .in{border-color:#0f8b7d}}
+#invov .iv-in{max-width:780px;margin:0 auto;border:2px solid #000;padding:14px}
+#invov .iv-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:12px}
+#invov .iv-top .iv-a{line-height:2}#invov .iv-top .iv-c{border:2px solid #000;padding:8px 26px;font-size:20px;font-weight:700;text-align:center}
+#invov .iv-top .iv-b{line-height:2;text-align:left}
+#invov .iv-bar{background:#333;color:#fff;padding:4px 10px;font-weight:700;border:1px solid #000;border-bottom:0}
+#invov .iv-box{border:1px solid #000;padding:6px 10px;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-bottom:10px;line-height:1.9}
+#invov .iv-box .iv-f{grid-column:1/-1}#invov .iv-box b{font-weight:700}
+#invov .iv-ed{display:inline-block;min-width:110px;border-bottom:1px dotted #555;outline:none}#invov .iv-ed:empty:before{content:"........................";color:#888}
+#invov .iv-tw2{overflow-x:auto}
+#invov table{width:100%;min-width:0;border-collapse:collapse;margin-bottom:10px}#invov th,#invov td{border:1px solid #000;padding:6px 5px;text-align:center;color:#000;background:none}
+#invov th{background:#e2e2e2;font-weight:700}#invov td.l{text-align:right}#invov tr.iv-e td{height:26px}
+#invov tfoot td{font-weight:700;background:#f3f3f3}#invov tfoot tr.iv-g td{background:#d6d6d6;font-size:15px}
+#invov .iv-bx{border:1px solid #000;padding:7px 10px;margin-bottom:10px;line-height:1.9}#invov .iv-bx.iv-tall{min-height:54px}
+#invov .iv-sg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}#invov .iv-sg div{border:1px solid #000;height:96px;padding:6px 10px;text-align:center;font-weight:700}
+#invov .iv-np{text-align:center;margin-bottom:12px;display:flex;gap:10px;justify-content:center}#invov .iv-np button{font:inherit;padding:8px 22px;border:0;border-radius:8px;background:#333;color:#fff;cursor:pointer}#invov .iv-np button.iv-g{background:#e5e7eb;color:#111}
+#tv table{min-width:0;font-size:12px}#tv th,#tv td{padding:6px 3px}#tv td{word-break:break-word}
+#invov .iv-no{direction:ltr;unicode-bidi:plaintext;white-space:normal;word-break:break-word}#invov table.iv-bt{table-layout:auto}#invov table.iv-bt th:nth-child(n){width:auto!important}
+@media(max-width:560px){#invov{padding:6px;font-size:12px}#invov .iv-in{padding:8px}#invov .iv-top{grid-template-columns:1fr;text-align:center}#invov .iv-top .iv-b{text-align:center}#invov .iv-c{font-size:17px;padding:6px 14px}#invov .iv-box{grid-template-columns:1fr}#invov th,#invov td{padding:5px 2px;font-size:11px}#invov th{white-space:normal}#invov .iv-sg div{height:80px}#invov table{table-layout:fixed}#invov th:nth-child(1){width:11%!important}#invov th:nth-child(3),#invov th:nth-child(4){width:12%}#invov th:nth-child(5){width:19%}#invov th:nth-child(6){width:21%}#invov tfoot tr.iv-g td{font-size:12px}}
+@media print{body>*:not(#invov){display:none!important}#invov{position:static;overflow:visible;padding:0;display:block}#invov .iv-np{display:none}#invov .iv-in{border:2px solid #000}#invov .iv-ed{border-bottom-color:transparent}#invov .iv-ed:empty:before{color:#555}}
 </style>
 </head>
 <body>
@@ -128,6 +138,7 @@ header{position:relative}
 <button data-t="te">🧮 هزینه نهایی</button>
 <button data-t="tp">💸 واریز به همکار</button>
 <button data-t="ts">🛎 نوع خدمات</button>
+<button data-t="tv">🏪 مشخصات فروشنده</button>
 </nav>
 <main>
 <section id="tw" class="on">
@@ -190,6 +201,24 @@ header{position:relative}
 <div class="kpis" id="ps"></div>
 <div class="card"><h3>لیست واریزها</h3><div class="row" style="margin:0 0 10px"><button class="btn g" id="pv">👁 نمایش شماره کارت‌ها</button></div>
 <div class="tw"><table><thead><tr><th>تاریخ واریز</th><th>نوع واریز</th><th>نام و نام خانوادگی</th><th>شماره کارت</th><th>مبلغ (تومان)</th><th>شماره رسید</th><th></th></tr></thead><tbody id="pb"></tbody><tfoot id="pf"></tfoot></table></div><div id="pe" class="empty">هنوز واریزی ثبت نشده است.</div></div>
+</section>
+<section id="tv">
+<div class="card"><h3>🏪 مشخصات فروشنده</h3>
+<div class="grid"><div><label>نام فروشنده</label><input id="vd_n"></div><div><label>شماره تماس</label><input id="vd_p" type="tel" inputmode="tel" dir="ltr"></div><div style="grid-column:1/-1"><label>نشانی (اختیاری)</label><input id="vd_a"></div></div>
+<p style="color:var(--mut);margin:8px 0 0">این مشخصات و حساب‌های بانکی زیر، خودکار روی فاکتور چاپ می‌شود.</p></div>
+<div class="card"><h3>💳 شماره کارت <span id="vd_c_c"></span></h3>
+<div class="grid"><div><label>شماره کارت (۱۶ رقم)</label><input id="vd_c_no" dir="ltr" inputmode="numeric" placeholder="6037 0000 0000 0000"></div><div><label>نام بانک</label><input id="vd_c_bk" list="vd_bl"></div><div><label>نام صاحب حساب</label><input id="vd_c_ow"></div></div>
+<div class="row"><button class="btn" id="vd_c_add">➕ افزودن کارت</button><button class="btn g" id="vd_c_cn" style="display:none">انصراف از ویرایش</button></div>
+<div class="tw"><table><thead><tr><th>شماره کارت</th><th>نام بانک</th><th>نام صاحب حساب</th><th></th></tr></thead><tbody id="vd_c_b"></tbody></table></div><div id="vd_c_e" class="empty">هنوز موردی ثبت نشده است.</div></div>
+<div class="card"><h3>🏦 شماره حساب <span id="vd_a_c"></span></h3>
+<div class="grid"><div><label>شماره حساب</label><input id="vd_a_no" dir="ltr" inputmode="numeric" placeholder="شماره حساب"></div><div><label>نام بانک</label><input id="vd_a_bk" list="vd_bl"></div><div><label>نام صاحب حساب</label><input id="vd_a_ow"></div></div>
+<div class="row"><button class="btn" id="vd_a_add">➕ افزودن حساب</button><button class="btn g" id="vd_a_cn" style="display:none">انصراف از ویرایش</button></div>
+<div class="tw"><table><thead><tr><th>شماره حساب</th><th>نام بانک</th><th>نام صاحب حساب</th><th></th></tr></thead><tbody id="vd_a_b"></tbody></table></div><div id="vd_a_e" class="empty">هنوز موردی ثبت نشده است.</div></div>
+<div class="card"><h3>🧾 شماره شبا <span id="vd_h_c"></span></h3>
+<div class="grid"><div><label>شماره شبا (IR + ۲۴ رقم)</label><input id="vd_h_no" dir="ltr" inputmode="text" placeholder="IR00 0000 0000 0000 0000 0000 00"></div><div><label>نام بانک</label><input id="vd_h_bk" list="vd_bl"></div><div><label>نام صاحب حساب</label><input id="vd_h_ow"></div></div>
+<div class="row"><button class="btn" id="vd_h_add">➕ افزودن شبا</button><button class="btn g" id="vd_h_cn" style="display:none">انصراف از ویرایش</button></div>
+<div class="tw"><table><thead><tr><th>شماره شبا</th><th>نام بانک</th><th>نام صاحب حساب</th><th></th></tr></thead><tbody id="vd_h_b"></tbody></table></div><div id="vd_h_e" class="empty">هنوز موردی ثبت نشده است.</div></div>
+<datalist id="vd_bl"><option value="ملی"><option value="ملت"><option value="صادرات"><option value="سپه"><option value="تجارت"><option value="کشاورزی"><option value="مسکن"><option value="پارسیان"><option value="پاسارگاد"><option value="سامان"><option value="اقتصاد نوین"><option value="رفاه کارگران"><option value="پست بانک"><option value="آینده"><option value="شهر"><option value="دی"><option value="سینا"><option value="توسعه صادرات"><option value="توسعه تعاون"><option value="صنعت و معدن"><option value="کارآفرین"><option value="سرمایه"><option value="ایران زمین"><option value="گردشگری"><option value="قرض‌الحسنه مهر ایران"><option value="قرض‌الحسنه رسالت"></datalist>
 </section>
 <section id="ts">
 <div class="card"><h3>🛎 ثبت نوع خدمات</h3>
@@ -260,14 +289,20 @@ function words(n){n=Math.round(n);if(!n)return'';var p=[],i=0;while(n>0&&i<SC.le
 function calc(){var f=$('svt').value?N('area')*N('ac'):0,lt=0;lines.forEach(function(x){lt+=x.t});$('fc').value=fa.format(f);$('sum').textContent=T(lt+f+N('rent')+N('misc'));['ac','rent','misc'].forEach(function(i){$('w_'+i).textContent=words(N(i))});$('w_fc').textContent=words(f)}
 ['area','ac','rent','misc'].forEach(function(i){$(i).oninput=calc});
 function recLines(r){return(r.items&&r.items.length)?r.items:[{st:r.st||'متراژ',su:r.su||(r.st?'':'متر'),q:r.a,p:r.up||(r.a?Math.round(r.ac/r.a):0),t:r.ac}]}
-window.prI=function(i){var r=data[i];if(!r)return;var L=recLines(r),tot=tt(r),f=function(n){return fa.format(Math.round(n))};
+window.prI=function(i){var r=data[i];if(!r)return;var L=recLines(r),tot=tt(r),f=function(n){return fa.format(Math.round(n))}
 var rows=L.map(function(x,k){return'<tr><td>'+f(k+1)+'</td><td class="l">'+esc(x.st)+'</td><td>'+esc(x.su||'')+'</td><td>'+fa.format(x.q)+'</td><td>'+f(x.p)+'</td><td>'+f(x.t)+'</td></tr>'}).join('');
-var h='<div class="np"><button onclick="window.print()">🖨 چاپ</button><button class="g" onclick="clI()">✖ بستن</button></div><div class="in">'
-+'<div class="hd"><h1>فاکتور خدمات</h1><div style="text-align:left"><div>تاریخ: '+fd(r)+'</div><div>شماره: '+f(i+1)+'</div></div></div>'
-+'<div class="m"><div><b>نام و نام خانوادگی: </b>'+esc(r.n||'—')+'</div><div><b>روستا: </b>'+esc(r.v)+'</div><div><b>نوع ماشین: </b>'+esc(r.veh||'—')+'</div><div><b>وضعیت واریز: </b>'+(r.pay?'واریز شده':'واریز نشده')+'</div></div>'
-+'<div class="tw2"><table><thead><tr><th>ردیف</th><th>نوع خدمات</th><th>واحد</th><th>تعداد</th><th>قیمت هر واحد (تومان)</th><th>قیمت (تومان)</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
-+'<div class="s"><div><span>جمع خدمات</span><span>'+f(r.ac)+'</span></div><div><span>کرایه ماشین</span><span>'+f(r.rent)+'</span></div><div><span>هزینه‌های متفرقه</span><span>'+f(r.misc)+'</span></div><div class="t"><span>جمع کل (تومان)</span><span>'+f(tot)+'</span></div></div>'
-+'<p class="w">به حروف: '+words(tot)+'</p><div class="sg"><span>امضای مشتری</span><span>امضای مسئول</span></div></div>';
+for(var k=L.length;k<5;k++)rows+='<tr class="iv-e"><td>'+f(k+1)+'</td><td></td><td></td><td></td><td></td><td></td></tr>';
+var ed=function(v){return'<span class="iv-ed">'+esc(v||'')+'</span>'};
+var bk='';[['c','شماره کارت'],['a','شماره حساب'],['h','شماره شبا']].forEach(function(t){sdr[VL[t[0]]].forEach(function(x){bk+='<tr><td>'+t[1]+'</td><td class="iv-no">'+esc(fmtNo(t[0],x.no))+'</td><td>'+esc(x.bk||'—')+'</td><td>'+esc(x.ow||'—')+'</td></tr>'})});
+var bkh=bk?'<div class="iv-bar">اطلاعات حساب‌های بانکی فروشنده (جهت واریز)</div><div class="iv-tw2"><table class="iv-bt"><thead><tr><th>نوع</th><th>شماره</th><th>نام بانک</th><th>نام صاحب حساب</th></tr></thead><tbody>'+bk+'</tbody></table></div>':'';
+var h='<div class="iv-np"><button onclick="window.print()">🖨 چاپ</button><button class="iv-g" onclick="clI()">✖ بستن</button></div><div class="iv-in">'
++'<div class="iv-top"><div class="iv-a"><div><b>شماره فاکتور: </b>'+f(i+1)+'</div></div><div class="iv-c">صورتحساب خدمات</div><div class="iv-b"><div><b>تاریخ: </b>'+fd(r)+'</div></div></div>'
++'<div class="iv-bar">مشخصات فروشنده</div><div class="iv-box"><div><b>نام فروشنده: </b>'+ed(sdr.n)+'</div><div><b>شماره تماس: </b>'+ed(sdr.p)+'</div><div class="iv-f"><b>نشانی: </b>'+ed(sdr.a)+'</div></div>'
++'<div class="iv-bar">مشخصات خریدار</div><div class="iv-box"><div><b>نام و نام خانوادگی: </b>'+esc(r.n||'—')+'</div><div><b>روستا: </b>'+esc(r.v)+'</div><div><b>نوع ماشین: </b>'+esc(r.veh||'—')+'</div><div><b>وضعیت پرداخت: </b>'+(r.pay?'پرداخت شده':'پرداخت نشده')+'</div></div>'
++'<div class="iv-bar">مشخصات کالا یا خدمات مورد معامله</div><div class="iv-tw2"><table><thead><tr><th style="width:44px">ردیف</th><th>شرح خدمات</th><th>واحد</th><th>تعداد</th><th>مبلغ واحد (تومان)</th><th>مبلغ کل (تومان)</th></tr></thead><tbody>'+rows+'</tbody>'
++'<tfoot><tr><td colspan="5">جمع خدمات</td><td>'+f(r.ac)+'</td></tr><tr><td colspan="5">کرایه ماشین</td><td>'+f(r.rent)+'</td></tr><tr><td colspan="5">هزینه‌های متفرقه</td><td>'+f(r.misc)+'</td></tr><tr class="iv-g"><td colspan="5">جمع کل قابل پرداخت (تومان)</td><td>'+f(tot)+'</td></tr></tfoot></table></div>'
++'<div class="iv-bx"><b>مبلغ به حروف: </b>'+words(tot)+'</div><div class="iv-bx iv-tall"><b>توضیحات: </b></div>'+bkh
++'<div class="iv-sg"><div>مهر و امضای فروشنده</div><div>امضای خریدار</div></div></div>';
 var o=document.getElementById('invov');if(!o){o=document.createElement('div');o.id='invov';document.body.appendChild(o)}
 o.innerHTML=h;o.classList.add('on');o.scrollTop=0;document.documentElement.style.overflow='hidden'};
 window.clI=function(){var o=document.getElementById('invov');if(o)o.classList.remove('on');document.documentElement.style.overflow=''};
@@ -334,14 +369,14 @@ mk('c4',{type:'doughnut',data:{labels:hk.map(function(k){return'کرایه '+k})
 mk('c6',{type:'line',data:{labels:mo.map(function(k){return fmo(A.mon[k].r)}),datasets:[{label:'مقدار',data:mo.map(function(k){return A.mon[k].a}),borderColor:pal[0],backgroundColor:gr('c6','rgba(20,184,166,.55)','rgba(20,184,166,0)'),fill:true,tension:.4,borderWidth:3,pointRadius:5}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:sc}})}
 $('mf').onchange=function(){sel=this.value;render()};
 document.querySelectorAll('#pt button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#pt button').forEach(function(x){x.classList.toggle('on',x===b)});$('cdl').style.display=b.dataset.p=='d'?'block':'none';$('cml').style.display=b.dataset.p=='m'?'block':'none'}});
-var wl=[],tl=[],pl=[],eq=[],sv=[],lines=[],fo=null;try{eq=JSON.parse(localStorage.getItem('hesab_e')||'[]');var f0=localStorage.getItem('hesab_fo');fo=f0===null?null:+f0;wl=JSON.parse(localStorage.getItem('hesab_w')||'[]');tl=JSON.parse(localStorage.getItem('hesab_t')||'[]');pl=JSON.parse(localStorage.getItem('hesab_p')||'[]');sv=JSON.parse(localStorage.getItem('hesab_s')||'[]')}catch(e){}
+var wl=[],tl=[],pl=[],eq=[],sv=[],lines=[],sdr=ldSel(),VL={c:'cards',a:'accts',h:'shebas'},VA={c:'کارت',a:'حساب',h:'شبا'},vde={c:-1,a:-1,h:-1},fo=null;try{eq=JSON.parse(localStorage.getItem('hesab_e')||'[]');var f0=localStorage.getItem('hesab_fo');fo=f0===null?null:+f0;wl=JSON.parse(localStorage.getItem('hesab_w')||'[]');tl=JSON.parse(localStorage.getItem('hesab_t')||'[]');pl=JSON.parse(localStorage.getItem('hesab_p')||'[]');sv=JSON.parse(localStorage.getItem('hesab_s')||'[]')}catch(e){}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function rem(){return window.SB&&window.user}
 function toW(x){return{name:x.n,village:x.v,phone:x.p}}
 function toT(x){return{name:x.n,village:x.v,phone:x.p,y:x.y,m:x.m,d:x.d}}
 function syncL(){if(!rem())return Promise.resolve();return Promise.all([['hesab_waiting',wl,toW],['hesab_turns',tl,toT],['hesab_payouts',pl,toP],['hesab_equip',eq,function(x){return{note:x.t,amount:x.a}}],['hesab_services',sv,toS]].map(function(c){var p=c[1].filter(function(x){return!x.id});if(!p.length)return Promise.resolve();return window.SB.from(c[0]).insert(p.map(c[2])).select().then(function(res){if(!res.error)res.data.forEach(function(r,i){p[i].id=r.id})})}))}
 function saveL(){try{localStorage.setItem('hesab_w',JSON.stringify(wl));localStorage.setItem('hesab_t',JSON.stringify(tl));localStorage.setItem('hesab_p',JSON.stringify(pl));localStorage.setItem('hesab_e',JSON.stringify(eq));localStorage.setItem('hesab_s',JSON.stringify(sv))}catch(e){}syncL()}
-function loadLists(){if(!rem())return;syncL().then(function(){return Promise.all([window.SB.from('hesab_waiting').select('*').order('created_at'),window.SB.from('hesab_turns').select('*').order('created_at'),window.SB.from('hesab_payouts').select('*').order('created_at'),window.SB.from('hesab_equip').select('*').order('created_at'),window.SB.from('hesab_kv').select('*'),window.SB.from('hesab_services').select('*').order('created_at')])}).then(function(r){if(!r[0].error)wl=r[0].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone}});if(!r[1].error)tl=r[1].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone,y:x.y,m:x.m,d:x.d}});if(!r[2].error)pl=r[2].data.map(function(x){return{id:x.id,n:x.name,c:x.card,a:+x.amount,y:x.y,m:x.m,d:x.d,r:x.receipt,k:x.kind||'c'}});if(!r[3].error)eq=r[3].data.map(function(x){return{id:x.id,t:x.note,a:+x.amount}});if(!r[4].error){var kf=r[4].data.filter(function(x){return x.key=='fo'})[0],kd=r[4].data.filter(function(x){return x.key=='dv'})[0];fo=kf?+kf.value:null;dn=kd?+kd.value:0}if(r[5]&&!r[5].error)sv=r[5].data.map(function(x){return{id:x.id,t:x.type,u:x.unit,q:+x.qty,p:+x.unit_price,a:+x.total}});saveFo(true);saveDn(true);saveL();renderL()})}
+function loadLists(){if(!rem())return;syncL().then(function(){return Promise.all([window.SB.from('hesab_waiting').select('*').order('created_at'),window.SB.from('hesab_turns').select('*').order('created_at'),window.SB.from('hesab_payouts').select('*').order('created_at'),window.SB.from('hesab_equip').select('*').order('created_at'),window.SB.from('hesab_kv').select('*'),window.SB.from('hesab_services').select('*').order('created_at')])}).then(function(r){if(!r[0].error)wl=r[0].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone}});if(!r[1].error)tl=r[1].data.map(function(x){return{id:x.id,n:x.name,v:x.village,p:x.phone,y:x.y,m:x.m,d:x.d}});if(!r[2].error)pl=r[2].data.map(function(x){return{id:x.id,n:x.name,c:x.card,a:+x.amount,y:x.y,m:x.m,d:x.d,r:x.receipt,k:x.kind||'c'}});if(!r[3].error)eq=r[3].data.map(function(x){return{id:x.id,t:x.note,a:+x.amount}});if(!r[4].error){var kf=r[4].data.filter(function(x){return x.key=='fo'})[0],kd=r[4].data.filter(function(x){return x.key=='dv'})[0];fo=kf?+kf.value:null;dn=kd?+kd.value:0;var ks=r[4].data.filter(function(x){return x.key=='seller'})[0];if(ks){try{sdr=nSel(JSON.parse(ks.value));saveSel(true)}catch(e){}}else if(hasSel())saveSel()}if(r[5]&&!r[5].error)sv=r[5].data.map(function(x){return{id:x.id,t:x.type,u:x.unit,q:+x.qty,p:+x.unit_price,a:+x.total}});saveFo(true);saveDn(true);saveL();renderL()})}
 function delRow(t,x){if(rem()&&x.id)window.SB.from(t).delete().eq('id',x.id).then(function(){})}
 function uniq(a){return a.filter(function(v,i){return v&&a.indexOf(v)==i})}
 function renderL(){
@@ -353,7 +388,7 @@ $('qb').innerHTML=o.map(function(q){var x=q.x;return'<tr><td>'+fd(x)+'</td><td>'
 function dl(a){return a.map(function(v){return'<option value="'+esc(v)+'">'}).join('')}
 $('wnl').innerHTML=dl(uniq(wl.map(function(x){return x.n})));
 $('wvl').innerHTML=dl(uniq(wl.map(function(x){return x.v}).concat(tl.map(function(x){return x.v}))));
-$('tnl').innerHTML=dl(uniq(tl.map(function(x){return x.n})));renderP();renderE();renderS()}
+$('tnl').innerHTML=dl(uniq(tl.map(function(x){return x.n})));renderP();renderE();renderS();renderV()}
 window.dW=function(i){delRow('hesab_waiting',wl.splice(i,1)[0]);saveL();renderL()};
 window.dT=function(i){delRow('hesab_turns',tl.splice(i,1)[0]);saveL();renderL()};
 window.toTurn=function(i){var x=wl[i];cqF();srcW=x;$('qn').value=x.n;$('qv').value=x.v;$('qp').value=x.p||'';document.querySelector('nav button[data-t=tq]').click()};
@@ -430,6 +465,24 @@ function fillUnits(u){var t=$('svt').value,us=uniq(sv.filter(function(x){return 
 $('svu').innerHTML=us.length?us.map(function(v){return'<option>'+esc(v)+'</option>'}).join(''):'<option value="">—</option>';if(u&&us.indexOf(u)>=0)$('svu').value=u}
 function svcPrice(){var t=$('svt').value,u=$('svu').value,f=null;for(var i=sv.length-1;i>=0;i--){if(sv[i].t==t&&sv[i].u==u){f=sv[i];break}}$('ac').value=f?f.p:'';calc()}
 $('svt').onchange=function(){fillUnits();svcPrice()};$('svu').onchange=svcPrice;
+function nSel(o){o=o||{};var c=function(a){return(Array.isArray(a)?a:[]).map(function(x){return{no:String(x.no||''),bk:String(x.bk||''),ow:String(x.ow||'')}})};return{n:o.n||o.sn||'',p:o.p||o.sp||'',a:o.a||o.sa||'',cards:c(o.cards),accts:c(o.accts),shebas:c(o.shebas)}}
+function ldSel(){try{return nSel(JSON.parse(localStorage.getItem('hesab_seller')||'{}'))}catch(e){return nSel({})}}
+function hasSel(){return!!(sdr.n||sdr.p||sdr.a||sdr.cards.length||sdr.accts.length||sdr.shebas.length)}
+function saveSel(lo){try{localStorage.setItem('hesab_seller',JSON.stringify(sdr))}catch(e){}if(lo||!rem())return;window.SB.from('hesab_kv').upsert({key:'seller',value:JSON.stringify(sdr)},{onConflict:'user_id,key'}).then(function(){})}
+function toEn(t){return String(t).replace(/[۰-۹]/g,function(d){return'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)}).replace(/[٠-٩]/g,function(d){return'٠١٢٣٤٥٦٧٨٩'.indexOf(d)})}
+function fmtNo(k,v){v=String(v);if(k=='c')return v.replace(/(\d{4})(?=\d)/g,'$1 ');if(k=='h')return v.replace(/(.{4})(?=.)/g,'$1 ');return v}
+function renderV(){['n','p','a'].forEach(function(k){var e=$('vd_'+k);if(document.activeElement!==e)e.value=sdr[k]||''});
+['c','a','h'].forEach(function(k){var L=sdr[VL[k]];$('vd_'+k+'_c').textContent='('+fa.format(L.length)+')';$('vd_'+k+'_e').style.display=L.length?'none':'block';
+$('vd_'+k+'_b').innerHTML=L.map(function(x,i){return'<tr><td style="direction:ltr;white-space:nowrap">'+esc(fmtNo(k,x.no))+'</td><td>'+esc(x.bk||'—')+'</td><td>'+esc(x.ow||'—')+'</td><td><button class="bt" title="ویرایش" onclick="vdE(\''+k+'\','+i+')">✏️</button><button class="x" onclick="vdD(\''+k+'\','+i+')">🗑</button></td></tr>'}).join('')})}
+function cV(k){vde[k]=-1;['no','bk','ow'].forEach(function(f){$('vd_'+k+'_'+f).value=''});$('vd_'+k+'_add').textContent='➕ افزودن '+VA[k];$('vd_'+k+'_cn').style.display='none'}
+window.vdE=function(k,i){var x=sdr[VL[k]][i];vde[k]=i;$('vd_'+k+'_no').value=x.no;$('vd_'+k+'_bk').value=x.bk;$('vd_'+k+'_ow').value=x.ow;$('vd_'+k+'_add').textContent='💾 ذخیره ویرایش';$('vd_'+k+'_cn').style.display='inline-block';$('vd_'+k+'_no').scrollIntoView({behavior:'smooth',block:'center'})};
+window.vdD=function(k,i){sdr[VL[k]].splice(i,1);if(vde[k]==i)cV(k);else if(vde[k]>i)vde[k]--;saveSel();renderV()};
+['n','p','a'].forEach(function(k){$('vd_'+k).oninput=function(){sdr[k]=this.value.trim();saveSel(true)};$('vd_'+k).onchange=function(){saveSel()}});
+['c','a','h'].forEach(function(k){$('vd_'+k+'_cn').onclick=function(){cV(k)};
+$('vd_'+k+'_add').onclick=function(){var no=toEn($('vd_'+k+'_no').value).replace(/[\s\-]/g,'');if(k=='h'){no=no.toUpperCase();if(/^\d/.test(no))no='IR'+no}
+var bad=!no||(k=='c'&&!/^\d{16}$/.test(no))||(k=='h'&&!/^IR\d{24}$/.test(no))||(k=='a'&&!/^[0-9.\/]+$/.test(no));
+if(bad){alert(k=='c'?'شماره کارت باید ۱۶ رقم باشد.':k=='h'?'شماره شبا باید با IR شروع شود و ۲۴ رقم داشته باشد.':'شماره حساب را درست وارد کنید (فقط عدد).');$('vd_'+k+'_no').focus();return}
+var o={no:no,bk:$('vd_'+k+'_bk').value.trim(),ow:$('vd_'+k+'_ow').value.trim()},L=sdr[VL[k]];if(vde[k]>=0)L[vde[k]]=o;else L.push(o);cV(k);saveSel();renderV()}});
 var esi=-1,autoP=true;
 function toS(x){return{type:x.t,unit:x.u,qty:x.q,unit_price:x.p,total:x.a}}
 function sCalc(){var q=N('sv_q'),p=N('sv_p'),t=q*p;$('sv_a').value=fa.format(Math.round(t));$('sv_sum').textContent=T(t);$('w_sv_p').textContent=words(p);$('w_sv_a').textContent=words(t)}
@@ -454,7 +507,7 @@ $('lx').onclick=function(){SB.auth.signOut()};
 function dr(o){$('dr').classList.toggle('open',!!o);$('ov').style.display=o?'block':'none'}
 $('hb').onclick=function(){dr(1)};$('xc').onclick=function(){dr(0)};$('ov').onclick=function(){dr(0)};
 function ui(){if(user)dr(0);$('hb').classList.toggle('in',!!user);$('lo').style.display=(user||!SB)?'none':'block';$('ln').style.display=user?'flex':'none';if(user)$('lu').textContent='وارد شده: '+user.email}
-if(SB){SB.auth.onAuthStateChange(function(ev,s){var was=user;user=s?s.user:null;ui();if(user&&!was){setTimeout(function(){syncNew().then(loadRemote)},0)}if(!user&&was){data=[];wl=[];tl=[];pl=[];eq=[];sv=[];fo=null;dn=0;try{localStorage.removeItem('hesab_dn');localStorage.removeItem('hesab_e');localStorage.removeItem('hesab_fo');localStorage.removeItem('hesab');localStorage.removeItem('hesab_w');localStorage.removeItem('hesab_t');localStorage.removeItem('hesab_p');localStorage.removeItem('hesab_s')}catch(e){}render();renderL()}})}else{ui()}
+if(SB){SB.auth.onAuthStateChange(function(ev,s){var was=user;user=s?s.user:null;ui();if(user&&!was){setTimeout(function(){syncNew().then(loadRemote)},0)}if(!user&&was){data=[];wl=[];tl=[];pl=[];eq=[];sv=[];fo=null;dn=0;try{localStorage.removeItem('hesab_dn');localStorage.removeItem('hesab_e');localStorage.removeItem('hesab_fo');localStorage.removeItem('hesab');localStorage.removeItem('hesab_w');localStorage.removeItem('hesab_t');localStorage.removeItem('hesab_p');localStorage.removeItem('hesab_s');localStorage.removeItem('hesab_seller')}catch(e){}sdr=ldSel();render();renderL()}})}else{ui()}
 var dpr=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dpr=e;$('inst').style.display='block'});
 $('inst').onclick=function(){if(dpr){dpr.prompt();dpr=null;$('inst').style.display='none'}};
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
