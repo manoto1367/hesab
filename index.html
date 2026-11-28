@@ -248,6 +248,26 @@ function w3(n){var r=[],h=Math.floor(n/100),t=n%100;if(h)r.push(HH[h]);if(t){if(
 function words(n){n=Math.round(n);if(!n)return'';var p=[],i=0;while(n>0&&i<SC.length){var x=n%1000;if(x)p.unshift(w3(x)+(SC[i]?' '+SC[i]:''));n=Math.floor(n/1000);i++}return p.join(' و ')+' تومان'}
 function calc(){var f=$('svt').value?N('area')*N('ac'):0,lt=0;lines.forEach(function(x){lt+=x.t});$('fc').value=fa.format(f);$('sum').textContent=T(lt+f+N('rent')+N('misc'));['ac','rent','misc'].forEach(function(i){$('w_'+i).textContent=words(N(i))});$('w_fc').textContent=words(f)}
 ['area','ac','rent','misc'].forEach(function(i){$(i).oninput=calc});
+function recLines(r){return(r.items&&r.items.length)?r.items:[{st:r.st||'متراژ',su:r.su||(r.st?'':'متر'),q:r.a,p:r.up||(r.a?Math.round(r.ac/r.a):0),t:r.ac}]}
+window.prI=function(i){var r=data[i];if(!r)return;var L=recLines(r),tot=tt(r),f=function(n){return fa.format(Math.round(n))};
+var rows=L.map(function(x,k){return'<tr><td>'+f(k+1)+'</td><td class="l">'+esc(x.st)+'</td><td>'+esc(x.su||'')+'</td><td>'+fa.format(x.q)+'</td><td>'+f(x.p)+'</td><td>'+f(x.t)+'</td></tr>'}).join('');
+var h='<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>فاکتور'+(r.n?' - '+esc(r.n):'')+'</title><style>'
++'*{box-sizing:border-box}body{font-family:Tahoma,Vazirmatn,Arial,sans-serif;color:#111;margin:0;padding:24px;font-size:14px}'
++'.in{max-width:760px;margin:0 auto;border:2px solid #0f8b7d;border-radius:12px;padding:22px}'
++'h1{margin:0;color:#0f8b7d;font-size:24px}.hd{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0f8b7d;padding-bottom:12px;margin-bottom:14px}'
++'.m{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-bottom:14px}.m div{padding:6px 0;border-bottom:1px dashed #bbb}.m b{color:#555;font-weight:600}'
++'table{width:100%;border-collapse:collapse;margin-bottom:14px}th,td{border:1px solid #999;padding:7px 6px;text-align:center}th{background:#e6f4f1}td.l{text-align:right}'
++'.s{margin-right:auto;width:300px}.s div{display:flex;justify-content:space-between;padding:6px 8px;border-bottom:1px solid #ddd}.s .t{background:#0f8b7d;color:#fff;font-weight:700;font-size:16px;border:0;border-radius:6px;margin-top:6px}'
++'.w{margin:10px 0 0;color:#444}.sg{display:flex;justify-content:space-around;margin-top:46px;color:#555}.sg span{border-top:1px solid #777;padding-top:6px;min-width:150px;text-align:center}'
++'.np{text-align:center;margin-bottom:14px}.np button{font:inherit;padding:8px 22px;border:0;border-radius:8px;background:#0f8b7d;color:#fff;cursor:pointer}'
++'@media print{.np{display:none}body{padding:0}}</style></head><body><div class="np"><button onclick="window.print()">🖨 چاپ</button></div><div class="in">'
++'<div class="hd"><h1>فاکتور خدمات</h1><div style="text-align:left"><div>تاریخ: '+fd(r)+'</div><div>شماره: '+f(i+1)+'</div></div></div>'
++'<div class="m"><div><b>نام و نام خانوادگی: </b>'+esc(r.n||'—')+'</div><div><b>روستا: </b>'+esc(r.v)+'</div><div><b>نوع ماشین: </b>'+esc(r.veh||'—')+'</div><div><b>وضعیت واریز: </b>'+(r.pay?'واریز شده':'واریز نشده')+'</div></div>'
++'<table><thead><tr><th>ردیف</th><th>نوع خدمات</th><th>واحد</th><th>تعداد</th><th>قیمت هر واحد (تومان)</th><th>قیمت (تومان)</th></tr></thead><tbody>'+rows+'</tbody></table>'
++'<div class="s"><div><span>جمع خدمات</span><span>'+f(r.ac)+'</span></div><div><span>کرایه ماشین</span><span>'+f(r.rent)+'</span></div><div><span>هزینه‌های متفرقه</span><span>'+f(r.misc)+'</span></div><div class="t"><span>جمع کل (تومان)</span><span>'+f(tot)+'</span></div></div>'
++'<p class="w">به حروف: '+words(tot)+'</p><div class="sg"><span>امضای مشتری</span><span>امضای مسئول</span></div></div>'
++'<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script></body></html>';
+var w=window.open('','_blank');if(!w){alert('برای چاپ فاکتور، اجازه باز شدن پنجره جدید را در مرورگر بدهید.');return}w.document.open();w.document.write(h);w.document.close()};
 function svcText(r){if(r.items&&r.items.length)return r.items.map(function(x){return esc(x.st)+' '+fa.format(x.q)+' '+esc(x.su)}).join('<br>');return r.st?esc(r.st)+' '+fa.format(r.a)+' '+esc(r.su||''):'متراژ '+fa.format(r.a)+' متر'}
 function curLine(){var q=N('area'),p=N('ac'),st=$('svt').value;return st&&q>0?{st:st,su:$('svu').value,q:q,p:p,t:q*p}:null}
 function renderLines(){var t=0;$('sl_b').innerHTML=lines.map(function(x,i){t+=x.t;return'<tr><td>'+esc(x.st)+'</td><td>'+esc(x.su)+'</td><td>'+fa.format(x.q)+'</td><td>'+fa.format(x.p)+'</td><td><b>'+fa.format(x.t)+'</b></td><td><button class="x" onclick="dL('+i+')">🗑</button></td></tr>'}).join('');$('sl_w').style.display=lines.length?'block':'none';$('sl_t').textContent=T(t);calc()}
@@ -283,7 +303,7 @@ try{renderE();renderP()}catch(e){}
 var A=agg(data),s=A.s,vk=Object.keys(A.veh);
 $('e1').style.display=data.length?'none':'block';$('e2').style.display=data.length?'none':'block';
 var srt=data.map(function(r,i){return{r:r,i:i}}).sort(function(a,b){return pd(b.r)<pd(a.r)?-1:1});
-$('tb').innerHTML=srt.map(function(o){var r=o.r;return'<tr><td>'+fd(r)+'</td><td>'+esc(r.n||'—')+'</td><td>'+esc(r.v)+'</td><td style="text-align:right;white-space:nowrap">'+svcText(r)+'</td><td>'+fa.format(r.ac)+'</td><td>'+fa.format(r.rent)+'</td><td>'+r.veh+'</td><td>'+fa.format(r.misc)+'</td><td><b>'+fa.format(tt(r))+'</b></td><td><button class="py '+(r.pay?'ok':'no')+'" onclick="pyT('+o.i+')">'+(r.pay?'✔ واریز انجام شد':'✖ واریز نشده')+'</button></td><td><button class="bt" title="ویرایش" onclick="edR('+o.i+')">✏️</button><button class="x" onclick="del('+o.i+')">🗑</button></td></tr>'}).join('');
+$('tb').innerHTML=srt.map(function(o){var r=o.r;return'<tr><td>'+fd(r)+'</td><td>'+esc(r.n||'—')+'</td><td>'+esc(r.v)+'</td><td style="text-align:right;white-space:nowrap">'+svcText(r)+'</td><td>'+fa.format(r.ac)+'</td><td>'+fa.format(r.rent)+'</td><td>'+r.veh+'</td><td>'+fa.format(r.misc)+'</td><td><b>'+fa.format(tt(r))+'</b></td><td><button class="py '+(r.pay?'ok':'no')+'" onclick="pyT('+o.i+')">'+(r.pay?'✔ واریز انجام شد':'✖ واریز نشده')+'</button></td><td><button class="bt" title="چاپ فاکتور" onclick="prI('+o.i+')">🖨</button><button class="bt" title="ویرایش" onclick="edR('+o.i+')">✏️</button><button class="x" onclick="del('+o.i+')">🗑</button></td></tr>'}).join('');
 $('tf').innerHTML=data.length?'<tr><td>جمع کل</td><td></td><td></td><td></td><td>'+fa.format(s.ac)+'</td><td>'+fa.format(s.rent)+'</td><td></td><td>'+fa.format(s.misc)+'</td><td>'+fa.format(s.t)+'</td><td></td><td></td></tr>':'';
 $('vl').innerHTML=vk.map(function(k){return'<option>'+k+'</option>'}).join('');
 var dk=Object.keys(A.days).sort(),mo=Object.keys(A.mon).sort();

@@ -1,4 +1,4 @@
-const V='hesab-v5',CORE=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon.svg','apple-touch-icon.png'];
+const V='hesab-v6',CORE=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon.svg','apple-touch-icon.png'];
 const HOSTS=['cdnjs.cloudflare.com','cdn.jsdelivr.net','fonts.googleapis.com','fonts.gstatic.com'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)).catch(()=>{}));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
