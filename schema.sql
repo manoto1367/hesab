@@ -105,3 +105,27 @@ revoke all on table public.hesab_kv from anon;
 
 -- وضعیت واریز هر رکورد
 alter table public.hesab_records add column if not exists paid boolean not null default false;
+
+-- نوع خدمات (نوع، واحد، تعداد، قیمت هر واحد، قیمت نهایی)
+create table if not exists public.hesab_services (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  type text not null, unit text not null default 'تعداد',
+  qty numeric not null default 0, unit_price numeric not null default 0, total numeric not null default 0,
+  created_at timestamptz not null default now()
+);
+create index if not exists hesab_services_user_idx on public.hesab_services(user_id);
+alter table public.hesab_services enable row level security;
+create policy "hs_select_own" on public.hesab_services for select to authenticated using (user_id = (select auth.uid()));
+create policy "hs_insert_own" on public.hesab_services for insert to authenticated with check (user_id = (select auth.uid()));
+create policy "hs_update_own" on public.hesab_services for update to authenticated using (user_id = (select auth.uid())) with check (user_id = (select auth.uid()));
+create policy "hs_delete_own" on public.hesab_services for delete to authenticated using (user_id = (select auth.uid()));
+grant select, insert, update, delete on table public.hesab_services to authenticated;
+revoke all on table public.hesab_services from anon;
+
+-- نوع و واحد خدمات در رکوردهای ثبت اطلاعات
+alter table public.hesab_records add column if not exists service text not null default '';
+alter table public.hesab_records add column if not exists unit text not null default '';
+
+-- چند نوع خدمات برای هر رکورد (هر نفر)
+alter table public.hesab_records add column if not exists items jsonb not null default '[]'::jsonb;
